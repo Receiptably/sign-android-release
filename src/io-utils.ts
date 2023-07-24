@@ -1,6 +1,6 @@
-import fs, { Dirent } from "fs";
+import fs = require("fs");
 
-export function findReleaseFiles(releaseDir: string): Dirent[] | undefined {
+export function findReleaseFiles(releaseDir: string): fs.Dirent[] | undefined {
     const releaseFiles = fs.readdirSync(releaseDir, { withFileTypes: true })
         .filter(item => !item.isDirectory())
         .filter(item => item.name.endsWith(".apk") || item.name.endsWith(".aab"));

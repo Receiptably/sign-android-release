@@ -1,8 +1,8 @@
-import * as core from '@actions/core';
-import * as exec from '@actions/exec';
-import * as io from '@actions/io';
-import * as fs from "fs";
-import * as path from "path";
+import core = require('@actions/core');
+import exec = require('@actions/exec');
+import io = require('@actions/io');
+import fs = require("fs");
+import path = require("path");
 
 export async function signApkFile(
     apkFile: string,

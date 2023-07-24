@@ -1,7 +1,8 @@
-import * as core from '@actions/core';
-import fs from "fs";
-import path from "path";
-import * as io from "./io-utils";
+import core = require('@actions/core');
+import fs = require("fs");
+import path = require("path");
+
+import { findReleaseFiles } from "./io-utils";
 import { signAabFile, signApkFile } from "./signing";
 
 async function run() {
@@ -20,7 +21,7 @@ async function run() {
     console.log(`Preparing to sign key @ ${releaseDir} with signing key`);
 
     // 1. Find release files
-    const releaseFiles = io.findReleaseFiles(releaseDir);
+    const releaseFiles = findReleaseFiles(releaseDir);
     if (releaseFiles !== undefined && releaseFiles.length !== 0) {
       // 3. Now that we have a release files, decode and save the signing key
       const signingKey = path.join(releaseDir, 'signingKey.jks');
