@@ -79,7 +79,8 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "corbyn.greenwood.98@gmail.com"
-          git commit -am "Pushing node_modules to tag - Github Actions"
+          git add -A
+          git commit -m "Pushing node_modules to tag - Github Actions"
 
       - name: Update Tag
         uses: hole19/git-tag-action@master
