@@ -1,8 +1,8 @@
-import * as exec from '@actions/exec';
 import * as core from '@actions/core';
+import * as exec from '@actions/exec';
 import * as io from '@actions/io';
-import * as path from "path";
 import * as fs from "fs";
+import * as path from "path";
 
 export async function signApkFile(
     apkFile: string,
@@ -32,7 +32,7 @@ export async function signApkFile(
         '-v', '4',
         apkFile
     ]);
-    
+
     await exec.exec(`"cp"`, [
         apkFile,
         alignedApkFile
