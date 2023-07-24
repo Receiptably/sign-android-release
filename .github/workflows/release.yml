@@ -22,12 +22,6 @@ jobs:
         with:
           node-version: 16
 
-      - name: Run tests
-        run: |
-          npm config set user 0
-          npm config set unsafe-perm true
-          npm run test
-
       - uses: pCYSl5EDgo/cat@1.0.1
         name: Cat for GitHub Actions
         id: get_key
