@@ -64,6 +64,7 @@ jobs:
 
       - name: 'Install node modules and build'
         run: |
+          npm install -g @actions/core
           npm install
           npm run build
 
