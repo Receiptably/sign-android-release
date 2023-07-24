@@ -55,4 +55,4 @@ outputs:
     description: 'The 12th signed release APK or AAB file'
 runs:
   using: 'node16'
-  main: 'src/main.ts'
+  main: 'lib/main.js'

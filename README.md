@@ -1,5 +1,5 @@
 # Notice
-I forked this from github.com/r0adkll/sign-android-release, where they had already resolved the 'node12 is being deprecated' warning. This was so I could use receiptably in the action name and remove some additional workflows and code that were added by them, lightening the weight a tiny bit. It also gave me a chance to automate some more of the process.
+I forked this from github.com/receiptably/sign-android-release, where they had already resolved the 'node12 is being deprecated' warning. This was so I could use receiptably in the action name and remove some additional workflows and code that were added by them, lightening the weight a tiny bit. It also gave me a chance to automate some more of the process.
 
 # Sign Android Release Action
 
@@ -60,7 +60,7 @@ The output variable `signedReleaseFile` can be used in a release action.
 
 ```yaml
 steps:
-  - uses: r0adkll/sign-android-release@v1
+  - uses: receiptably/sign-android-release@v1
     name: Sign app APK
     # ID used to access action output
     id: sign_app
@@ -88,7 +88,7 @@ can be used to refer to each signed release file.
 
 ```yaml
 steps:
-  - uses: r0adkll/sign-android-release@v1
+  - uses: receiptably/sign-android-release@v1
     id: sign_app
     with:
       releaseDirectory: app/build/outputs/apk/release
@@ -119,7 +119,7 @@ before being used in a release action.
 
 ```yaml
 steps:
-  - uses: r0adkll/sign-android-release@v1
+  - uses: receiptably/sign-android-release@v1
     id: sign_app
     with:
       releaseDirectory: app/build/outputs/apk/release
