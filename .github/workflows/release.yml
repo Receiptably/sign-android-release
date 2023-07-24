@@ -17,14 +17,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         name: Checkout code
+          
+      - name: cleanup node_modules
+        shell: pwsh
+        run: |
+          if (Test-Path -Path node_modules) {
+            Remove-Item -Path node_modules -Recurse -Force
+          }
 
       - uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: NPM install
+      - name: 'Validate build'
         run: |
           npm install
+          npm run build
 
       - uses: pCYSl5EDgo/cat@1.0.1
         name: Cat for GitHub Actions
