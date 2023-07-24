@@ -79,8 +79,9 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "corbyn.greenwood.98@gmail.com"
-          git push origin :refs/tags/${{ github.ref }} --force
-
+          git tag -am "Pushing node_modules to tag - Github Actions" ${{ github.ref }}
+          git push --tags
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1.1.4
