@@ -2,8 +2,12 @@ name: "Tag & Deploy Action"
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - 'v*'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   test:
@@ -11,8 +15,12 @@ jobs:
     name: Test action
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
         name: Checkout code
+
+      - name: 'Install node modules and build'
+        run: |
+          npm install
 
       - name: Run tests
         run: npm run test
@@ -46,12 +54,25 @@ jobs:
     runs-on: ubuntu-latest
     name: Update action
 
-    steps:
-      - uses: actions/checkout@v1
-        name: Checkout code
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Update v1 Tag
-        uses: hole19/git-tag-action@master
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 'Install node modules and build'
+        run: |
+          npm install
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
-          TAG: v1
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: (${{ github.ref }}) Github Actions Sign Android Release
+          draft: false
+          prerelease: false
