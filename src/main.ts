@@ -1,8 +1,8 @@
 import * as core from '@actions/core';
-import {signAabFile, signApkFile} from "./signing";
-import path from "path";
 import fs from "fs";
+import path from "path";
 import * as io from "./io-utils";
+import { signAabFile, signApkFile } from "./signing";
 
 async function run() {
   try {
@@ -27,7 +27,7 @@ async function run() {
       fs.writeFileSync(signingKey, signingKeyBase64, 'base64');
 
       // 4. Now zipalign and sign each one of the the release files
-      let signedReleaseFiles:string[] = [];
+      let signedReleaseFiles: string[] = [];
       let index = 0;
       for (let releaseFile of releaseFiles) {
         core.debug(`Found release to sign: ${releaseFile.name}`);
@@ -65,7 +65,7 @@ async function run() {
       core.error("No release files (.apk or .aab) could be found. Abort.");
       core.setFailed('No release files (.apk or .aab) could be found.');
     }
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message);
   }
 }
