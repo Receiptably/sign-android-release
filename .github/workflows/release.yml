@@ -1,4 +1,4 @@
-name: "Tag & Deploy Action"
+name: "Tag & Release Action"
 
 on:
   push:
