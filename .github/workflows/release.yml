@@ -25,7 +25,7 @@ jobs:
       - name: Run tests
         run: npm run test
 
-      - uses: pCYSl5EDgo/cat@1.0.0
+      - uses: pCYSl5EDgo/cat@v1
         name: Cat for GitHub Actions
         id: get_key
         with:
@@ -52,7 +52,7 @@ jobs:
   release:
     needs: test
     runs-on: ubuntu-latest
-    name: Update action
+    name: Release action
 
     steps:
       - name: Checkout code
@@ -68,7 +68,7 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
