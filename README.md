@@ -1,5 +1,5 @@
 # Notice
-I forked this from github.com/r0adkll/sign-android-release, where they had already resolved the 'node12 is being deprecated' warning. This was so I could use receiptably in the action name and remove some additional workflows and code that were added by them, lightening the weight a tiny bit. It also gave me a chance to automate some of the process.
+I forked this from github.com/r0adkll/sign-android-release, where they had already resolved the 'node12 is being deprecated' warning. This was so I could use receiptably in the action name and remove some additional workflows and code that were added by them, lightening the weight a tiny bit. It also gave me a chance to automate some more of the process.
 
 # Sign Android Release Action
 
