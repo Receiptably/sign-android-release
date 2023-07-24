@@ -79,9 +79,14 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "corbyn.greenwood.98@gmail.com"
-          git tag -am "Pushing node_modules to tag - Github Actions" ${{ github.ref }}
-          git push --tags
-          
+          git commit -am "Pushing node_modules to tag - Github Actions"
+
+      - name: Update Tag
+        uses: hole19/git-tag-action@master
+        env:
+          TAG: ${{ github.ref }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1.1.4
