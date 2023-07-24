@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Update action
 
-     steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
