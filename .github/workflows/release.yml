@@ -102,6 +102,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.get_version.outputs.version }}
-          release_name: (${{ github.ref }}) Github Actions Sign Android Release
+          release_name: (v${{ steps.get_version.outputs.version }}) Github Actions Sign Android Release
           draft: false
           prerelease: false
