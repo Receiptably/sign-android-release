@@ -2,8 +2,8 @@ name: "Tag & Release Action"
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -80,14 +80,19 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "corbyn.greenwood.98@gmail.com"
+          git config --global --add safe.directory /github/workspace
           git add -A
-          git status
           git commit -m "Pushing node_modules to tag - Github Actions"
+
+      - uses: bbonkr/get-version-action@v1.2.1
+        id: get_version
+        with:
+          project: './package.json'
 
       - name: Update Tag
         uses: hole19/git-tag-action@master
         env:
-          TAG: ${{ github.ref }}
+          TAG: v${{ steps.get_version.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create Release
