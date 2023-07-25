@@ -71,15 +71,17 @@ jobs:
         with:
           node-version: 16
 
-      - name: NPM install
+      - name: NPM install and build
         run: |
           npm install
+          npm run build
 
       - name: Force push to tag
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "corbyn.greenwood.98@gmail.com"
           git add -A
+          git status
           git commit -m "Pushing node_modules to tag - Github Actions"
 
       - name: Update Tag
@@ -90,6 +92,7 @@ jobs:
 
       - name: Create Release
         id: create_release
+        needs: test
         uses: actions/create-release@v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
