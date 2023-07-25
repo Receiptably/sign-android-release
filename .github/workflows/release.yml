@@ -76,14 +76,6 @@ jobs:
           npm install
           npm run build
 
-      - name: Force push to tag
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "corbyn.greenwood.98@gmail.com"
-          git config --global --add safe.directory /github/workspace
-          git add -A
-          git commit -m "Pushing node_modules to tag - Github Actions"
-
       - uses: bbonkr/get-version-action@v1.2.1
         id: get_version
         with:
