@@ -2,8 +2,8 @@ name: "Tag & Release Action"
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -71,29 +71,19 @@ jobs:
         with:
           node-version: 16
 
-      - name: NPM install and build
+      - name: NPM install
         run: |
           npm install
           npm run build
 
-      - uses: bbonkr/get-version-action@v1.2.1
-        id: get_version
-        with:
-          project: './package.json'
-
-      - name: Update Tag
-        uses: hole19/git-tag-action@master
-        env:
-          TAG: v${{ steps.get_version.outputs.version }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Create Release
         id: create_release
+        needs: test
         uses: actions/create-release@v1.1.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.get_version.outputs.version }}
-          release_name: (v${{ steps.get_version.outputs.version }}) Github Actions Sign Android Release
+          tag_name: ${{ github.ref }}
+          release_name: (${{ github.ref }}) Github Actions Sign Android Release
           draft: false
           prerelease: false
